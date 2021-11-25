@@ -1,7 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Alert } from 'react-bootstrap';
 import { AuthContext } from '../../context/AuthContext';
-import { AddAuction } from './AddAuction';
 import { AuctionCard } from './AuctionCard';
 import { ProgressBar } from './ProgressBar';
 import { FilterContext } from '../../context/FilterContext';
@@ -20,7 +19,15 @@ export const AuctionBody = () => {
    setItemState(a)
   }
 
+  let admin = currentUser ? currentUser.email : false
+  console.log(admin)
 
+  let DBD
+  if(admin === 'superadmin@gmail.com'){
+    DBD = DB
+  }else{
+    DBD = []
+  }
 
   return (
     <div className="">
@@ -31,12 +38,11 @@ export const AuctionBody = () => {
            {globalMsg && <Alert variant="danger">{globalMsg}</Alert>}
         </div>
        
-        {currentUser && <AddAuction setAuction={setAuction} />}
 
         {DB && (
           <div className="row row-cols-1 row-cols-md-3 row-cols-lg-4 p-5 g-3 border mt-1 ">
               <Filters />
-            {DB.map((doc) => {
+            {DBD.map((doc) => {
               return <AuctionCard item={doc} key={doc.id} handleState={handleState} />;
             })}
           </div>
