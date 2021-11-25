@@ -1,33 +1,27 @@
 import React, { useContext, useState } from 'react';
 import { Alert } from 'react-bootstrap';
 import { AuthContext } from '../../context/AuthContext';
+import { AddAuction } from './AddAuction';
 import { AuctionCard } from './AuctionCard';
 import { ProgressBar } from './ProgressBar';
-import { FilterContext } from '../../context/FilterContext';
-import ItemSelected from './ItemSelected';
-import Filters from './Filters'
+import { useFirestore } from '../../hooks/useFirestore';
 
 
 export const AuctionBody = () => {
   const [auction, setAuction] = useState(null);
   const { currentUser, globalMsg } = useContext(AuthContext);
-  const { DB } = useContext(FilterContext);
+  const { docs } = useFirestore('auctions');
 
-  const [itemState, setItemState]=useState()
 
-  const handleState = (a)=>{
-   setItemState(a)
-  }
+let user = currentUser ? currentUser.email : false
 
-  let admin = currentUser ? currentUser.email : false
-/*   console.log(admin) */
+let docss
 
-  let DBD
-  if(admin === 'superadmin@gmail.com'){
-    DBD = DB
-  }else{
-    DBD = []
-  }
+ if(user){
+  docss = docs.filter(el => el.email === currentUser.email)
+}else{
+  docss = []
+}
 
   return (
     <div className="">
@@ -38,19 +32,15 @@ export const AuctionBody = () => {
            {globalMsg && <Alert variant="danger">{globalMsg}</Alert>}
         </div>
        
+        {currentUser && <AddAuction setAuction={setAuction} />}
 
-        {DB && (
+        {docss && (
           <div className="row row-cols-1 row-cols-md-3 row-cols-lg-4 p-5 g-3 border mt-1 ">
-              <Filters />
-            {DBD.map((doc) => {
-              return <AuctionCard item={doc} key={doc.id} handleState={handleState} />;
+            {docss.map((doc, i) => {
+              return <AuctionCard item={doc} key={i} />;
             })}
           </div>
         )} 
-
-  
-        <ItemSelected itemState={itemState} />
-      
 
     </div>
   );

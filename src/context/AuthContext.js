@@ -9,8 +9,8 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [globalMsg, setGlobalMsg] = useState('');
 
-  const register = (/* name,  */email, password) => {
-    return authApp.createUserWithEmailAndPassword(/* name, */ email, password);
+  const register = (email, password) => {
+    return authApp.createUserWithEmailAndPassword( email, password);
   };
 
   const login = (email, password) => {

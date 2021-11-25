@@ -1,4 +1,4 @@
-import { Button, Form, Modal, Alert, Row, Col} from "react-bootstrap";
+import { Button, Form, Modal, Alert, Row, Col, Select } from "react-bootstrap";
 import React, { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -9,7 +9,6 @@ export const AddAuction = ({ setAuction }) => {
   const itemTitle = useRef();
   const itemDesc = useRef();
   const startPrice = useRef();
- /*  const itemDuration = useRef(); */
   const itemImage = useRef();
   const itemCategorie = useRef();
 
@@ -50,38 +49,35 @@ export const AddAuction = ({ setAuction }) => {
 
   return (
     <>
-      <div className="col d-flex justify-content-center my-3">
+      <div className="col d-flex justify-content-center my-3 ">
         <div onClick={openForm} className="btn btn-success mx-2">
-          + viaje
+          + Guardar Viaje
         </div>
       </div>
-      <Modal centered show={showForm} onHide={closeForm}>
-        <form onSubmit={submitForm}>
-          <Modal.Header>
-            <Modal.Title>Guardar Viaje</Modal.Title>
-          </Modal.Header>
+      <Modal centered show={showForm} onHide={closeForm} style={{width: '96%', marginLeft: '1%'}} >
+        <form onSubmit={submitForm} style={{backgroundColor:'rgb(222,222,222)'}}>
           <Modal.Body>
             {error && <Alert variant="danger">{error}</Alert>}
             <Row>
-            <Col>
-                <Form.Group>
-                  <Form.Label>Taxista</Form.Label>
-                  <Form.Control type="text" value={currentUser.email} readOnly />
-                </Form.Group>
+            <Col className="border mb-5 btn bg-primary mx-2 p-2 text-center text-white">
+                
+                  {currentUser.email} 
+               
               </Col>
             </Row>
             <Row>
               <Col>
                 <Form.Group>
-                  <Form.Label>Numero de Taxi</Form.Label>
+                  <Form.Label>Numero de Taxi y Nombre</Form.Label>
                   <Form.Control type="text" required ref={itemTitle} />
                 </Form.Group>
               </Col>
-      
+
+              </Row>
+              <Row>
             <Col>
                 <Form.Label>Cliente</Form.Label>
-                <Form.Control as="Select" multiple={false} ref={itemCategorie}>
-                  <option>Selecciona un Cliente</option>
+                <Form.Control as="select" multiple={false} ref={itemCategorie}>
                   <option value="oxxo">OXXO</option>
                   <option value="otro1">otro 1</option>
                   <option value="otro2">otro2</option>
@@ -95,12 +91,6 @@ export const AddAuction = ({ setAuction }) => {
                   <Form.Control type="number" required ref={startPrice} />
                 </Form.Group>
               </Col>
-             {/*   <Col>
-                <Form.Group>
-                  <Form.Label>Item Duration in hours</Form.Label>
-                  <Form.Control type="number" required ref={itemDuration} />
-                </Form.Group>
-              </Col>  */}
             </Row>
 
             <Row>
@@ -129,10 +119,10 @@ export const AddAuction = ({ setAuction }) => {
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={closeForm}>
-              Cancel
+              Cancelar
             </Button>
             <Button variant="primary" type="submit">
-              Submit
+              Guardar
             </Button>
           </Modal.Footer>
         </form>
