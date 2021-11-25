@@ -34,7 +34,7 @@ const Range = () => {
       }
   }, [selectState])
 
-  console.log("selectState:", selectState);
+  /* console.log("selectState:", selectState); */
  
 
   return (
@@ -50,7 +50,7 @@ const Range = () => {
            Completados
           </option>
           <option value="fallen">
-            Incompletados
+            Sin Completar
           </option>
         </select>
       </div>

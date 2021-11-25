@@ -17,7 +17,7 @@ export const NavComp = () => {
           <div className="col">
             {currentUser ? (
               <>
-                <div className="btn btn-outline-secondary mx-2 disabled">
+                <div className="btn btn-secondary mx-2 disabled">
                   {currentUser.email}
                 </div>
                 <div onClick={() => logout()} className="btn btn-outline-secondary mx-2">

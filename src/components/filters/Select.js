@@ -38,7 +38,7 @@ const Select = () => {
       }
   }, [selectState])
 
-  console.log("selectState:", selectState);
+/*   console.log("selectState:", selectState); */
  
 
   return (

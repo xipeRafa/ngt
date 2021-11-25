@@ -38,13 +38,13 @@ const Categories = () => {
             let index = arrFilter.indexOf( item );
             if(index>-1){ arrFilter.splice( index, 1 )} 
       }
-      console.log('Array-false:', arrFilter)
+      /* console.log('Array-false:', arrFilter) */
      
       useEffect(() => {
             for (let index = 0; index < arrFilter.length; index++) {
                   const element = db.filter(el => el.categorie !== arrFilter[index]);
                   db = element
-                  console.log('for:', db) 
+                 /*  console.log('for:', db)  */
             } 
                handleDB(db)
       
@@ -60,7 +60,7 @@ const Categories = () => {
   return (
     <div>
       <div className="w-75">
-        <p>Clientes:</p>
+        <h2>Clientes</h2>
         <label>
           <input type="checkbox" className="m-1" value='oxxo' onChange={e=>handleoxxo(e)}  checked={oxxo}/>
           oxxo 

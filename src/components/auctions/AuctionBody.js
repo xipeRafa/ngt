@@ -20,7 +20,7 @@ export const AuctionBody = () => {
   }
 
   let admin = currentUser ? currentUser.email : false
-  console.log(admin)
+/*   console.log(admin) */
 
   let DBD
   if(admin === 'superadmin@gmail.com'){
@@ -48,11 +48,9 @@ export const AuctionBody = () => {
           </div>
         )} 
 
-      {
-        DB.length === 0 
-          ? ''
-          : <ItemSelected itemState={itemState} />
-      }
+  
+        <ItemSelected itemState={itemState} />
+      
 
     </div>
   );

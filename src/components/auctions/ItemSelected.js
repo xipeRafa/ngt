@@ -1,22 +1,20 @@
-import { AuthContext } from "../../context/AuthContext";
-import React, { useContext } from "react";
+import { useState } from "react";
 import { useFirestore } from "../../hooks/useFirestore";
 
 const ItemSelected = ({
   itemState = {
-    title: "choose an item",
+    title: "Inicia sesión",
     imgUrl:
-      "https://image.shutterstock.com/image-photo/indifferent-puzzled-female-shruggs-shoulders-600w-1164353026.jpg",
-  },
+      "https://image.shutterstock.com/image-photo/indifferent-puzzled-female-shruggs-shoulders-600w-1164353026.jpg"
+  }
 }) => {
-  const { currentUser, bidAuction, endAuction } = useContext(AuthContext);
   const { docs } = useFirestore("auctions");
 
   let title = itemState.title;
 
   let payed = 0;
-  let email = '';
-  let seconds 
+  let email = "";
+  let seconds;
 
   docs.map((el) => {
     el.id === itemState.id && (payed = el.curPrice);
@@ -26,59 +24,46 @@ const ItemSelected = ({
     el.id === itemState.id && (seconds = el.createdAt.seconds);
   });
 
-
-  let date = new Date(seconds*1000);
-
+  let date = new Date(seconds * 1000);
 
   return (
     <div className="m-5">
-      <div className="card shadow-sm p-5">
+      <div className="card p-5 pb-0">
         <div
           style={{
-            height: "420px",
+            height: "400px",
             backgroundImage: `url(${itemState.imgUrl})`,
             backgroundSize: "contain",
             backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
+            backgroundPosition: "center"
           }}
-          className="w-100"
+          className="w-100 mb-4"
         />
 
+        {title !== "Inicia sesión" && (
         <div className="card-body">
-          <p className="lead display-6">taxi: {itemState.title}</p>
+          <p className="lead display-6">
+            <span className="text-secondary">Taxi: </span> {itemState.title}
+          </p>
           <div className="d-flex jsutify-content-between align-item-center">
             <h5>
-             correo: {email}
+              <span className="text-secondary">Correo: </span> {email}
             </h5>
           </div>
-          <div>
-            fecha: {date.toString()}
-          </div>
-          <p className="card-text">comentarios: {itemState.description}</p>
-          <div className="d-flex justify-content-between align-item-center ">
-            {/* <div>
-              {
-                !currentUser 
-                  ? <div onClick={()=> bidAuction()} className="btn btn-outline-secondary">
-                     Bid
-                    </div>
-                  : currentUser.email === itemState.email 
-                  ? <div onClick={()=> endAuction(itemState.id)} className="btn btn-outline-secondary">
-                      Cancel Auction
-                    </div>
-                  : currentUser.email === curWinner 
-                  ? <p className="h1">Winner</p>
-                  : title !== "choose an item" 
-                  &&  <div onClick={()=> bidAuction(itemState.id, itemState.curPrice)} 
-                           className="btn btn-primary"
-                      >
-                        PAY ${Number(payed) + 1} to win
-                      </div>
-              }
-            </div> */}
-            { title !== "choose an item" && <p className="display-6">${payed}</p> }
+          <h5>
+            <span className="text-secondary">Fecha: </span> {date.toString()}
+          </h5>
+          <h5 className="card-text">
+            <span className="text-secondary">Comentarios: </span>{" "}
+            {itemState.description}
+          </h5>
+          <div style={{float:'right'}}>
+            
+              <p className="display-6 ">${payed}</p>
+           
           </div>
         </div>
+         )}
       </div>
     </div>
   );
