@@ -8,7 +8,6 @@ export const AddAuction = ({ setAuction }) => {
 
   const itemTitle = useRef();
   const itemDesc = useRef();
-  const startPrice = useRef();
   const itemImage = useRef();
   const itemCategorie = useRef();
 
@@ -36,7 +35,6 @@ export const AddAuction = ({ setAuction }) => {
       email: currentUser.email,
       title: itemTitle.current.value,
       description: itemDesc.current.value,
-      curPrice: startPrice.current.value,
       duration: dueDate,
       itemImage: itemImage.current.files[0],
       categorie: itemCategorie.current.value,
@@ -50,8 +48,8 @@ export const AddAuction = ({ setAuction }) => {
   return (
     <>
       <div className="col d-flex justify-content-center my-3 ">
-        <div onClick={openForm} className="btn btn-success mx-2">
-          + Guardar Viaje
+        <div onClick={openForm} className="btn btn-success mx-5 w-100">
+           Guardar Viaje
         </div>
       </div>
       <Modal centered show={showForm} onHide={closeForm} style={{width: '96%', marginLeft: '1%'}} >
@@ -59,45 +57,35 @@ export const AddAuction = ({ setAuction }) => {
           <Modal.Body>
             {error && <Alert variant="danger">{error}</Alert>}
             <Row>
-            <Col className="border mb-5 btn bg-primary mx-2 p-2 text-center text-white">
-                
+            <Col className="border mb-4 btn bg-primary mx-2 p-2 text-center text-white">
                   {currentUser.email} 
-               
               </Col>
             </Row>
             <Row>
-              <Col>
+              <Col className="mb-4">
                 <Form.Group>
-                  <Form.Label>Numero de Taxi y Nombre</Form.Label>
+                  <Form.Label>KL</Form.Label>
                   <Form.Control type="text" required ref={itemTitle} />
                 </Form.Group>
               </Col>
 
               </Row>
               <Row>
-            <Col>
+            <Col className="mb-4">
                 <Form.Label>Cliente</Form.Label>
                 <Form.Control as="select" multiple={false} ref={itemCategorie}>
                   <option value="oxxo">OXXO</option>
-                  <option value="otro1">otro 1</option>
-                  <option value="otro2">otro2</option>
+                  <option value="otro1">Otro</option>
+                  <option value="pago en efectivo">Pago en Efectivo</option>
                 </Form.Control >
               </Col>
             </Row>
             <Row>
-              <Col>
-                <Form.Group>
-                  <Form.Label>Precio</Form.Label>
-                  <Form.Control type="number" required ref={startPrice} />
-                </Form.Group>
-              </Col>
-            </Row>
-
-            <Row>
             <Col>
                 <Form.Group>
                   <Form.Label>Comentarios</Form.Label>
-                  <Form.Control type="text" required ref={itemDesc} />
+                  <Form.Control   as="textarea" placeholder="comentarios..." 
+                                  style={{ height: '80px',resize:'none' }} required ref={itemDesc} />
                 </Form.Group>
               </Col>
             </Row>
@@ -109,8 +97,8 @@ export const AddAuction = ({ setAuction }) => {
                   <Form.File
                     label="Cargar Foto"
                     custom
-                    required
                     ref={itemImage}
+                    required
                   />
                 </Form.Group>
               </Col>

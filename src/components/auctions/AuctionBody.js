@@ -18,7 +18,7 @@ let user = currentUser ? currentUser.email : false
 let docss
 
  if(user){
-  docss = docs.filter(el => el.email === currentUser.email)
+  docss = docs.filter(el => el.email === currentUser.email).sort((o1, o2) => o2.duration - o1.duration)
 }else{
   docss = []
 }
