@@ -8,15 +8,22 @@ export const AuctionCard = ({ item }) => {
 
   const { docs } = useFirestore("auctions");
 
-  /*   let seconds */
+    let seconds 
     let completed
 
     docs.map((el) => {
-    /*   el.id === item.id && (seconds = el.createdAt.seconds.toString()); */
+      el.id === item.id && (seconds = el.duration);
       el.id === item.id && (completed = el.completed);
     });
 
-  /*   let date = new Date(seconds*1000); */
+    const hora = new Date(seconds).toLocaleTimeString("es-CL") 
+
+let date = new Date(seconds).toLocaleDateString("es-CL", {
+      weekday: "short", // narrow, short
+      year: "numeric", // 2-digit
+      month: "short", // numeric, 2-digit, narrow, long
+      day: "numeric", // 2-digit
+}); 
 
     return (
       <div className="col mb-4">
@@ -33,14 +40,14 @@ export const AuctionCard = ({ item }) => {
           />
   
           <div className="card-body p-4">
-            <p className="h4"><span className="text-secondary">Kl: </span>{item.title}</p>
+            <p className="h4"><span className="text-secondary">Kl: </span>{currentUser.email.slice(0, -10)}</p>
             <div className="d-flex jsutify-content-between align-item-center">
               <h5>
               <span className="text-secondary">Cliente: </span> {item.categorie}
               </h5>
             </div>
             <div>
-              <p>{ /* date.slice(0, -38) */ }</p>
+              <p>{date}, {hora}</p>
             </div>
             <p className="card-text">{item.description}</p>
             <div className="d-flex justify-content-between align-item-center">

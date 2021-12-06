@@ -1,6 +1,23 @@
 import { Button, Form, Modal, Alert, Row, Col, Select } from "react-bootstrap";
 import React, { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import Resizer from "react-image-file-resizer";
+
+const resizeFile = (file) =>
+  new Promise((resolve) => {
+    Resizer.imageFileResizer(
+      file,
+      210,
+      280,
+      "JPEG",
+      80,
+      0,
+      (uri) => {
+        resolve(uri);
+      },
+      "base64"
+    );
+  });
 
 export const AddAuction = ({ setAuction }) => {
   const [showForm, setShowForm] = useState(false);
@@ -17,6 +34,21 @@ export const AddAuction = ({ setAuction }) => {
   const closeForm = () => setShowForm(false);
 
   const imgTypes = ["image/png", "image/jpeg", "image/jpg"];
+
+  const onResize = async (event) => {
+    const file = event.target.files[0];
+    const image = await resizeFile(file);
+
+    fetch(image)
+    .then(res => res.blob())
+    .then(blob => {
+      const file = new File([blob], Date.now()+'ddddddddddddddddxx.jpeg',{ type: "image/jpeg" })
+      setImg(file)
+    })
+  };
+
+  const[img, setImg]=useState()
+
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -38,7 +70,7 @@ export const AddAuction = ({ setAuction }) => {
       title: itemTitle.current.value,
       description: itemDesc.current.value,
       duration: dueDate,
-      itemImage: itemImage.current.files[0],
+      itemImage: img,
       categorie: itemCategorie.current.value,
       completed: false
     };
@@ -60,13 +92,13 @@ export const AddAuction = ({ setAuction }) => {
             {error && <Alert variant="danger">{error}</Alert>}
             <Row>
             <Col className="border mb-4 btn bg-primary mx-2 p-2 text-center text-white">
-                  {currentUser.email} 
+                  {currentUser.email.slice(0, -10)} 
               </Col>
             </Row>
             <Row>
               <Col className="mb-4">
                 <Form.Group>
-                  <Form.Label>KL</Form.Label>
+                  <Form.Label>Unidad</Form.Label>
                   <Form.Control type="text" required ref={itemTitle} />
                 </Form.Group>
               </Col>
@@ -101,6 +133,7 @@ export const AddAuction = ({ setAuction }) => {
                     custom
                     ref={itemImage}
                     required
+                    onChange={onResize}
                   />
                 </Form.Group>
               </Col>

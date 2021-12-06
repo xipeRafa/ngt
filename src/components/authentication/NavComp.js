@@ -17,8 +17,8 @@ export const NavComp = () => {
           <div className="col mb-4">
             {currentUser ? (
               <>
-                <div className="btn btn-secondary mx-2 disabled">
-                  {currentUser.email}
+                <div className="btn btn-secondary mx-2 disabled px-4">
+                  {currentUser.email.slice(0, -10)}
                 </div>
                 <div onClick={() => logout()} className="btn btn-outline-secondary mx-2">
                   SALIR
