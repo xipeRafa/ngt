@@ -42,7 +42,7 @@ export const AddAuction = ({ setAuction }) => {
     fetch(image)
     .then(res => res.blob())
     .then(blob => {
-      const file = new File([blob], Date.now()+'ddddddddddddddddxx.jpeg',{ type: "image/jpeg" })
+      const file = new File([blob], Date.now()+'.jpeg',{ type: "image/jpeg" })
       setImg(file)
     })
   };
@@ -109,7 +109,7 @@ export const AddAuction = ({ setAuction }) => {
                 <Form.Label>Cliente</Form.Label>
                 <Form.Control as="select" multiple={false} ref={itemCategorie}>
                   <option value="oxxo">OXXO</option>
-                  <option value="otro1">Otro</option>
+                  <option value="otro">Otro</option>
                   <option value="pago en efectivo">Pago en Efectivo</option>
                 </Form.Control >
               </Col>
