@@ -20,9 +20,9 @@ const useStorage = (data) => {
       },
       async () => {
         const imgUrl = await storageRef.getDownloadURL();
-        const createdAt = timestamp();
+        /* const createdAt = timestamp(); */
         delete data.itemImage;
-        await collectionRef.add({ ...data, createdAt, imgUrl });
+        await collectionRef.add({ ...data, /* createdAt, */ imgUrl });
         setIsCompleted(true);
       }
     );
