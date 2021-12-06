@@ -26,6 +26,8 @@ export const AddAuction = ({ setAuction }) => {
       return setError("Please use a valid image");
     }
 
+    console.log('imagen:', itemImage.current.files[0])
+
     let currentDate = new Date();
     let dueDate = currentDate.setHours(
       currentDate.getHours()
