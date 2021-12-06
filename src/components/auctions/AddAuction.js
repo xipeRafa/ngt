@@ -28,7 +28,7 @@ export const AddAuction = ({ setAuction }) => {
 
     let currentDate = new Date();
     let dueDate = currentDate.setHours(
-      currentDate.getHours() /* + itemDuration.current.value */
+      currentDate.getHours()
     );
 
     let newAuction = {

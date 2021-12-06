@@ -39,12 +39,12 @@ export const LoginComp = () => {
           <Modal.Body>
             {error && <Alert variant="danger">{error}</Alert>}
             <Form.Group>
-              <Form.Label>Email </Form.Label>
-              <Form.Control type="email" required ref={emailRef} />
+              <Form.Label>KL </Form.Label>
+              <Form.Control type="text" required ref={emailRef} placeholder='escribe tu KL' />
             </Form.Group>
-            <Form.Group>
+            <Form.Group className="d-none">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" required ref={passwordRef} />
+              <Form.Control type="text" ref={passwordRef} value='123456'/>
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>

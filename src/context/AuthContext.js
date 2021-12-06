@@ -14,7 +14,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = (email, password) => {
-    return authApp.signInWithEmailAndPassword(email, password);
+    return authApp.signInWithEmailAndPassword(email+'@gmail.com', password);
   };
 
   const logout = () => {
