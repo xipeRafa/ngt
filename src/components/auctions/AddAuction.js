@@ -20,6 +20,9 @@ const resizeFile = (file) =>
   });
 
 
+
+
+export const AddAuction = ({ setAuction }) => {
   const [lati, setLati]=useState('no-gps')
   const [longi, setLongi]=useState('no-gps')
   console.log(longi)
@@ -56,8 +59,7 @@ const resizeFile = (file) =>
         break;
     }
   }
-
-export const AddAuction = ({ setAuction }) => {
+  
   const [showForm, setShowForm] = useState(false);
   const [error, setError] = useState("");
 
