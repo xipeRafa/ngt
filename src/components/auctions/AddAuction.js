@@ -19,6 +19,12 @@ const resizeFile = (file) =>
     );
   });
 
+
+  const [lati, setLati]=useState('no-gps')
+  const [longi, setLongi]=useState('no-gps')
+  console.log(longi)
+  console.log(lati)
+  
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition, showError);
     } else { 
@@ -28,7 +34,10 @@ const resizeFile = (file) =>
   
   function showPosition(position) {
     console.log("Latitude: ", position.coords.latitude)
+    setLati(position.coords.latitude)
+
     console.log("Longitude: ", position.coords.longitude)
+    setLongi(position.coords.longitude)
   }
   
   function showError(error) {
@@ -100,6 +109,8 @@ export const AddAuction = ({ setAuction }) => {
       description: itemDesc.current.value,
       duration: dueDate,
       itemImage: img,
+      latitude:lati,
+      longitude:longi,
       categorie: itemCategorie.current.value,
       completed: false
     };
