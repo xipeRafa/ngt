@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
     const db = firestoreApp.collection('auctions');
 
     return db.doc(auctionId).update({
-      completed: true
+      completed: false
     });
   };
 

@@ -25,8 +25,7 @@ const resizeFile = (file) =>
 export const AddAuction = ({ setAuction }) => {
   const [lati, setLati]=useState('no-gps')
   const [longi, setLongi]=useState('no-gps')
-  console.log(longi)
-  console.log(lati)
+
   
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition, showError);
@@ -114,7 +113,7 @@ export const AddAuction = ({ setAuction }) => {
       latitude:lati,
       longitude:longi,
       categorie: itemCategorie.current.value,
-      completed: false
+      completed: true
     };
 
     setAuction(newAuction);
@@ -152,8 +151,8 @@ export const AddAuction = ({ setAuction }) => {
                 <Form.Control as="select" multiple={false} ref={itemCategorie}>
                   <option value="oxxo">OXXO</option>
                   <option value="otro">Otro</option>
-                  <option value="taller">Taller</option>
                   <option value="pago en efectivo">Pago en Efectivo</option>
+                  <option value="taller">Taller</option>
                 </Form.Control >
               </Col>
             </Row>
