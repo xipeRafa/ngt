@@ -49,12 +49,12 @@ let date = new Date(seconds).toLocaleDateString("es-CL", {
             <div>
               <p>{date}, {hora}</p>
             </div>
-            <p className="card-text">{item.description}</p>
+            <p className="card-text">{item.description.slice(0, 22)}...</p>
             <div className="d-flex justify-content-between align-item-center">
                 {
                   currentUser &&
                     <button onClick={() => 
-                    bidAuction(item.id)} className={completed ? 'btn btn-primary w-100' : 'btn btn-danger'}>
+                    bidAuction(item.id)} className={completed ? 'btn btn-primary' : 'btn btn-danger w-100'}>
                          {completed ? 'Completado' : ' Sin Completar'}
                     </button>
                 } 
