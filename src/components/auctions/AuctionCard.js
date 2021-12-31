@@ -49,7 +49,9 @@ let date = new Date(seconds).toLocaleDateString("es-CL", {
             <div>
               <p>{date}, {hora}</p>
             </div>
+    
             <p className="card-text">{item.description.slice(0, 22)}...</p>
+            
             <div className="d-flex justify-content-between align-item-center">
                 {
                   currentUser &&
