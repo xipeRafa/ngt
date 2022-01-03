@@ -35,10 +35,8 @@ export const AddAuction = ({ setAuction }) => {
 
   
   function showPosition(position) {
-    console.log("Latitude: ", position.coords.latitude)
     setLati(position.coords.latitude)
 
-    console.log("Longitude: ", position.coords.longitude)
     setLongi(position.coords.longitude)
   }
   
@@ -125,6 +123,7 @@ export const AddAuction = ({ setAuction }) => {
       longitude:longi,
       categorie: itemCategorie.current.value,
       tiendaOxxo: tienda1,
+      atendio:'',
       completed: true
     };
 
@@ -169,9 +168,10 @@ export const AddAuction = ({ setAuction }) => {
               </Col>
             </Row>
 
+
             <Row>
             <Col>
-              <Form.Label>Distrito</Form.Label>
+              <Form.Label>Elige un Distrito de Tiendas oxxo</Form.Label>
               <Form.Control
                 as="Select"
                 multiple={false}
@@ -187,7 +187,7 @@ export const AddAuction = ({ setAuction }) => {
 
             <Row className={dist === 'dos' && 'd-none'} >
             <Col>
-              <Form.Label>Tiendas Distrito 1 Uno</Form.Label>
+              <Form.Label>Tiendas oxxo Distrito 1 Uno</Form.Label>
               <Form.Control
                 as="Select"
                 multiple={false}
@@ -297,7 +297,7 @@ export const AddAuction = ({ setAuction }) => {
 
           <Row className={dist === 'uno' && 'd-none'} >
             <Col>
-              <Form.Label>Tiendas Distrito 2 Dos</Form.Label>
+              <Form.Label>Tiendas oxxo Distrito 2 Dos</Form.Label>
               <Form.Control
                 as="Select"
                 multiple={false}
@@ -520,6 +520,9 @@ export const AddAuction = ({ setAuction }) => {
               </Form.Control>
             </Col>
           </Row> 
+
+
+
             <Row>
             <Col>
                 <Form.Group>
