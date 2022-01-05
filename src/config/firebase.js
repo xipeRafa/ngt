@@ -5,12 +5,12 @@ import 'firebase/firestore';
 
 // Use your own configs!
 const app = firebase.initializeApp({
-  apiKey: "AIzaSyB3s6QjYWR6EL45XSK7ANP-D_1I-DZ9eYg",
-  authDomain: "taxis-e44d6.firebaseapp.com",
-  projectId: "taxis-e44d6",
-  storageBucket: "taxis-e44d6.appspot.com",
-  messagingSenderId: "603667662446",
-  appId: "1:603667662446:web:0014b763a2a4acca92487f"
+  apiKey: "AIzaSyBpVbOQfUp2eia-8rokbNCu7tsm11cuEpI",
+  authDomain: "daring-tracer-333307.firebaseapp.com",
+  projectId: "daring-tracer-333307",
+  storageBucket: "daring-tracer-333307.appspot.com",
+  messagingSenderId: "478802051249",
+  appId: "1:478802051249:web:40e0003d08645cba016290"
 });
 
 export const timestamp = firebase.firestore.FieldValue.serverTimestamp;
