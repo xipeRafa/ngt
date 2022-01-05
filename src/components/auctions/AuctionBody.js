@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import { Alert } from 'react-bootstrap';
 import { AuthContext } from '../../context/AuthContext';
 import { AddAuction } from './AddAuction';
 import { AuctionCard } from './AuctionCard';
@@ -9,7 +8,7 @@ import { useFirestore } from '../../hooks/useFirestore';
 
 export const AuctionBody = () => {
   const [auction, setAuction] = useState(null);
-  const { currentUser, globalMsg } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
   const { docs } = useFirestore('auctions');
 
 
@@ -27,10 +26,6 @@ let docss
     <div className="">
 
         {auction && <ProgressBar auction={auction} setAuction={setAuction} />}
-
-        <div  style={{zIndex:"9999999"}} className="text-center w-50 position-fixed top-10 start-50 translate-middle">
-           {globalMsg && <Alert variant="danger">{globalMsg}</Alert>}
-        </div>
        
         {currentUser && <AddAuction setAuction={setAuction} />}
 

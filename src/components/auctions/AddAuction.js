@@ -159,7 +159,7 @@ export const AddAuction = ({ setAuction }) => {
               <Row>
             <Col className="mb-4">
                 <Form.Label>Cliente</Form.Label>
-                <Form.Control as="select" multiple={false} ref={itemCategorie}>
+                <Form.Control as="Select" multiple={false} ref={itemCategorie}>
                   <option value="oxxo">OXXO</option>
                   <option value="otro">Otro</option>
                   <option value="pago en efectivo">Pago en Efectivo</option>
