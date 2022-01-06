@@ -1,26 +1,21 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { AddAuction } from './AddAuction';
 import { AuctionCard } from './AuctionCard';
 import { ProgressBar } from './ProgressBar';
-import { useFirestore } from '../../hooks/useFirestore';
 
 
 export const AuctionBody = () => {
   const [auction, setAuction] = useState(null);
+
   const { currentUser } = useContext(AuthContext);
-  const { docs } = useFirestore('auctions');
 
+const[arr, setArr]=useState([])
+console.log(arr.filter(el => el !== null))
 
-let user = currentUser ? currentUser.email : false
-
-let docss
-
- if(user){
-  docss = docs.filter(el => el.email === currentUser.email).sort((o1, o2) => o2.duration - o1.duration)
-}else{
-  docss = []
-}
+useEffect(() => {
+  setArr([...arr, auction])
+}, [auction])
 
   return (
     <div className="">
@@ -29,16 +24,15 @@ let docss
        
         {currentUser && <AddAuction setAuction={setAuction} />}
 
-        {docss && (
-          <div className="row row-cols-1 row-cols-md-3 row-cols-lg-4 p-5 g-3 border mt-1 ">
-            {docss
+        
+           <div className="row row-cols-1 row-cols-md-3 row-cols-lg-4 p-5 g-3 border mt-1 ">
+            {arr.filter(el => el !== null)
               .slice(0,8)
               .map((doc, i) => {
               return <AuctionCard item={doc} key={i} />;
             })}
-          </div>
-        )} 
-
+          </div> 
+        
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { firestoreApp, storageApp, timestamp } from '../config/firebase';
+import { firestoreApp, storageApp /* timestamp */ } from '../config/firebase';
 
 const useStorage = (data) => {
   const [progress, setProgress] = useState(0);
@@ -9,13 +9,10 @@ const useStorage = (data) => {
     const storageRef = storageApp.ref(data.itemImage.name);
     const collectionRef = firestoreApp.collection('auctions');
 
-    storageRef.put(data.itemImage).on(
-      'state_changed',
-      (snap) => {
+    storageRef.put(data.itemImage).on('state_changed', (snap) => {
         let percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
         setProgress(percentage);
-      },
-      (err) => {
+      }, (err) => {
         console.log(err);
       },
       async () => {

@@ -4,7 +4,7 @@ import { AuthContext } from '../../context/AuthContext';
 export const AuctionCard = ({ item }) => {
 
 
-   const { currentUser, bidAuction} = useContext(AuthContext); 
+   const { currentUser } = useContext(AuthContext); 
 
 
     let seconds = item.duration
@@ -27,7 +27,7 @@ let date = new Date(seconds).toLocaleDateString("es-CL", {
           <div
             style={{
               height: '180px',
-              backgroundImage: `url(${item.imgUrl})`,
+              backgroundImage: `url(${item.url})`,
               backgroundSize: 'contain',
               backgroundRepeat: 'no-repeat',
               backgroundPosition: 'center',
@@ -42,6 +42,13 @@ let date = new Date(seconds).toLocaleDateString("es-CL", {
               <span className="text-secondary">Cliente: </span> {item.categorie}
               </h5>
             </div>
+            {item.categorie === 'oxxo' &&
+              <div className="d-flex jsutify-content-between align-item-center">
+                <h5>
+                  <span className="text-secondary">oxxo: </span> {item.tiendaOxxo}
+                </h5>
+              </div>
+            }
             <div>
               <p>{date}, {hora}</p>
             </div>
@@ -49,13 +56,12 @@ let date = new Date(seconds).toLocaleDateString("es-CL", {
             <p className="card-text">{item.description.slice(0, 22)}...</p>
             
             <div className="d-flex justify-content-between align-item-center">
-                {
-                  currentUser &&
-                    <button onClick={() => 
-                    bidAuction(item.id)} className={completed ? 'btn btn-primary' : 'btn btn-danger w-100'}>
+                
+                    <button /* onClick={() => bidAuction(item.id)} */ 
+                            className={completed ? 'btn btn-primary' : 'btn btn-danger w-100'}>
                          {completed ? 'Completado' : ' Sin Completar'}
                     </button>
-                } 
+                
             </div>
           </div>
         </div>
