@@ -111,7 +111,7 @@ export const AddAuction = ({ setAuction }) => {
     e.preventDefault();
 
     if(cliente === 'oxxo' && tienda1 === ''){
-      alert('elija la tienda')
+      alert('Elija la tienda')
       return
     }
 
@@ -161,7 +161,7 @@ export const AddAuction = ({ setAuction }) => {
               </Col>
             </Row>
             <Row>
-              <Col className="mb-4">
+              <Col className="mb-2">
                 <Form.Group>
                   <Form.Label>Unidad</Form.Label>
                   <Form.Control type="text" required ref={itemTitle} />
@@ -170,7 +170,7 @@ export const AddAuction = ({ setAuction }) => {
 
               </Row>
               <Row>
-            <Col className="mb-4">
+            <Col className="mb-2">
                 <Form.Label>Cliente</Form.Label>
                 <Form.Control as="select" multiple={false} onChange={handleCliente} value={cliente}>
                   <option value="oxxo">OXXO</option>
@@ -189,7 +189,7 @@ export const AddAuction = ({ setAuction }) => {
                 as="select"
                 multiple={false}
                 onChange={distrito}
-                className="mb-3"
+                className="mb-2"
               >
                 <option disabled>Selecciona una Opcion</option>
                 <option value="uno">1 Uno</option> 
@@ -534,7 +534,7 @@ export const AddAuction = ({ setAuction }) => {
 
             <Row>
             <Col>
-                <Form.Group>
+                <Form.Group className="mb-3">
                   <Form.Control   as="textarea" placeholder="comentarios..." 
                                   style={{ height: '80px',resize:'none' }} required ref={itemDesc} />
                 </Form.Group>
@@ -559,8 +559,8 @@ export const AddAuction = ({ setAuction }) => {
           </Modal.Body>
           <Modal.Footer>
          
-            <Button variant={!asm ? 'danger' : 'outline-secondary'} onClick={()=>setAsm(!asm)}>
-               {!asm ? 'Viaje Incompleto' : 'Viaje Completado'}
+            <Button variant={!asm ? 'danger' : 'outline-primary'} onClick={()=>setAsm(!asm)}>
+               {!asm ? 'Sin Completar ✘' : 'Viaje Completado ✓'}
             </Button>
             
             <Button variant="secondary" onClick={closeForm}>
