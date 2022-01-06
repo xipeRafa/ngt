@@ -3,25 +3,17 @@ import { AuthContext } from '../../context/AuthContext';
 
 export const AuctionCard = ({ item }) => {
 
+  const { currentUser } = useContext(AuthContext); 
+  const hora = new Date(item.duration).toLocaleTimeString("es-CL") 
 
-   const { currentUser } = useContext(AuthContext); 
-
-
-    let seconds = item.duration
-    let completed = item.completed
-
-  
-
-    const hora = new Date(seconds).toLocaleTimeString("es-CL") 
-
-let date = new Date(seconds).toLocaleDateString("es-CL", {
+  let date = new Date(item.duration).toLocaleDateString("es-CL", {
       weekday: "short", // narrow, short
       year: "numeric", // 2-digit
       month: "short", // numeric, 2-digit, narrow, long
       day: "numeric", // 2-digit
-}); 
+  }); 
 
-    return (
+  return (
       <div className="col mb-4">
         <div className="card shadow-sm">
           <div
@@ -36,7 +28,9 @@ let date = new Date(seconds).toLocaleDateString("es-CL", {
           />
   
           <div className="card-body p-4">
-            <p className="h4"><span className="text-secondary">Kl: </span>{currentUser.email.slice(0, -10)}</p>
+            <p className="h4"><span className="text-secondary">
+              Kl: </span>{currentUser?.email?.slice(0, -10)}
+            </p>
             <div className="d-flex jsutify-content-between align-item-center">
               <h5>
               <span className="text-secondary">Cliente: </span> {item.categorie}
@@ -47,8 +41,7 @@ let date = new Date(seconds).toLocaleDateString("es-CL", {
                 <h5>
                   <span className="text-secondary">oxxo: </span> {item.tiendaOxxo}
                 </h5>
-              </div>
-            }
+              </div>}
             <div>
               <p>{date}, {hora}</p>
             </div>
@@ -58,14 +51,14 @@ let date = new Date(seconds).toLocaleDateString("es-CL", {
             <div className="d-flex justify-content-between align-item-center">
                 
                     <button /* onClick={() => bidAuction(item.id)} */ 
-                            className={completed ? 'btn btn-primary' : 'btn btn-danger w-100'}>
-                         {completed ? 'Completado' : ' Sin Completar'}
+                            className={item.completed ? 'btn btn-primary' : 'btn btn-danger w-100'}>
+                         {item.completed ? 'Completado' : ' Sin Completar'}
                     </button>
                 
             </div>
           </div>
         </div>
       </div>
-    );
-  };
+  );
+};
 

@@ -1,4 +1,4 @@
-import { Button, Form, Modal, Alert, Row, Col } from "react-bootstrap";
+import { Button, Form, Modal, Row, Col } from "react-bootstrap";
 import React, { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import Resizer from "react-image-file-resizer";
@@ -58,7 +58,6 @@ export const AddAuction = ({ setAuction }) => {
   }
   
   const [showForm, setShowForm] = useState(false);
-  const [error, setError] = useState("");
 
   const itemTitle = useRef();
   const itemDesc = useRef();
@@ -98,7 +97,9 @@ export const AddAuction = ({ setAuction }) => {
     setDist(e.target.value)
   }
 
+  
   const[tienda1, setTienda1]=useState('')
+
 
   const handleTienda1 = (e) =>{
     setTienda1(e?.target?.value)
@@ -108,10 +109,14 @@ export const AddAuction = ({ setAuction }) => {
 
   const submitForm = async (e) => {
     e.preventDefault();
-    setError("");
+
+    if(cliente === 'oxxo' && tienda1 === ''){
+      alert('elija la tienda')
+      return
+    }
 
     if (!imgTypes.includes(itemImage.current.files[0].type)) {
-      return setError("Please use a valid image");
+      return console.log("Please use a valid image");
     }
 
     console.log('imagen:', itemImage.current.files[0])
@@ -150,7 +155,6 @@ export const AddAuction = ({ setAuction }) => {
       <Modal centered show={showForm} onHide={closeForm} style={{width: '96%', marginLeft: '1%'}} >
         <form onSubmit={submitForm} style={{backgroundColor:'rgb(222,222,222)'}}>
           <Modal.Body>
-            {error && <Alert variant="danger">{error}</Alert>}
             <Row>
             <Col className="border mb-4 btn bg-primary mx-2 p-2 text-center text-white">
                   {currentUser.email.slice(0, -10)} 
@@ -197,12 +201,11 @@ export const AddAuction = ({ setAuction }) => {
             <Row className={dist === 'dos' && 'd-none'} >
             <Col>
               <Form.Label>Tiendas oxxo Distrito #1</Form.Label>
-              <Form.Control
-                as="select"
-                multiple={false}
-                onChange={handleTienda1}
-                className="mb-3"
-              >
+              <Form.Control type="search" list="finder1" onChange={handleTienda1} className="mb-3" 
+                            value={tienda1}
+              />
+            
+                <datalist id="finder1">
                 <option>Selecciona Una Tienda de Distrito Uno</option>
                 <option value="Altares II-50AUF">Altares II-50AUF</option> 
                 <option value="Apolo-50OAP">Apolo-50OAP</option> 
@@ -299,20 +302,18 @@ export const AddAuction = ({ setAuction }) => {
                 <option value="Villa Verde-50VNU">Villa Verde-50VNU</option> 
                 <option value="Vinedos-50QZZ">Vinedos-50QZZ</option> 
                 <option value="Yunke-50hzy">Yunke-50hzy</option> 
-
-              </Form.Control>
+                </datalist>
             </Col>
           </Row> 
 
           <Row className={dist === 'uno' && 'd-none'} >
             <Col>
               <Form.Label>Tiendas oxxo Distrito #2</Form.Label>
-              <Form.Control
-                as="select"
-                multiple={false}
-                onChange={handleTienda1}
-                className="mb-3"
-              >
+              <Form.Control type="search" list="finder2" onChange={handleTienda1} className="mb-3" 
+                            value={tienda1}    
+              />
+            
+                <datalist id="finder2">
                 <option>Selecciona Una Tienda de Distrito Dos</option>
 
                 <option value="14 De Abril-503FS">14 De Abril-503FS</option> 
@@ -525,8 +526,8 @@ export const AddAuction = ({ setAuction }) => {
 
                 <option value="Y Griega-50GRI">Y Griega-50GRI</option> 
                 <option value="Yanez-50BYY">Yanez-50BYY</option> 
+                </datalist>
 
-              </Form.Control>
             </Col>
           </Row> 
         </div>{/* select tiendas */}

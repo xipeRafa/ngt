@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { firestoreApp, storageApp /* timestamp */ } from '../config/firebase';
+import { firestoreApp, storageApp } from '../config/firebase';
 
 const useStorage = (data) => {
   const [progress, setProgress] = useState(0);
@@ -17,9 +17,8 @@ const useStorage = (data) => {
       },
       async () => {
         const imgUrl = await storageRef.getDownloadURL();
-        /* const createdAt = timestamp(); */
-        delete data.itemImage;
-        await collectionRef.add({ ...data, /* createdAt, */ imgUrl });
+        delete data.itemImage; 
+        await collectionRef.add({ ...data, imgUrl });
         setIsCompleted(true);
       }
     );
