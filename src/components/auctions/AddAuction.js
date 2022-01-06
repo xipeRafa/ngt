@@ -560,7 +560,7 @@ export const AddAuction = ({ setAuction }) => {
           <Modal.Footer>
          
             <Button variant={!asm ? 'danger' : 'outline-primary'} onClick={()=>setAsm(!asm)}>
-               {!asm ? 'Sin Completar ✘' : 'Viaje Completado ✓'}
+               {!asm ? 'Sin Completar ✘' : 'Completado ✓'}
             </Button>
             
             <Button variant="secondary" onClick={closeForm}>
