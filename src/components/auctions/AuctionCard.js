@@ -52,7 +52,7 @@ export const AuctionCard = ({ item }) => {
                 
                     <button /* onClick={() => bidAuction(item.id)} */ 
                             className={item.completed ? 'btn btn-primary' : 'btn btn-danger w-100'}>
-                         {item.completed ? 'Viaje Completado' : ' Sin Completar'}
+                         {item.completed ? 'Completado' : ' Sin Completar'}
                     </button>
                 
             </div>
