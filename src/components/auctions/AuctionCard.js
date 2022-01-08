@@ -1,7 +1,7 @@
 import React, { useContext} from 'react';
 import { AuthContext } from '../../context/AuthContext';
 
-export const AuctionCard = ({ item }) => {
+export const AuctionCard = ({ item, deleteHandler }) => {
 
   const { currentUser } = useContext(AuthContext); 
   const hora = new Date(item.duration).toLocaleTimeString("es-CL") 
@@ -14,8 +14,11 @@ export const AuctionCard = ({ item }) => {
   }); 
 
   return (
-      <div className="col mb-4">
+      <div className="col mb-4"> 
         <div className="card shadow-sm">
+
+        <input type="button" value="Borrar de Mi Cuenta" onClick={() => deleteHandler(item.duration)} />
+
           <div
             style={{
               height: '180px',

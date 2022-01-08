@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-import { authApp, firestoreApp } from '../config/firebase';
+import { authApp /* firestoreApp  */} from '../config/firebase';
 
 export const AuthContext = createContext();
 
@@ -19,14 +19,14 @@ export const AuthProvider = ({ children }) => {
     return authApp.signOut();
   };
 
-  const bidAuction = (auctionId) => {
+ /*  const bidAuction = (auctionId) => {
 
     const db = firestoreApp.collection('auctions');
 
     return db.doc(auctionId).update({
       completed: false
     });
-  };
+  }; */
 
   useEffect(() => {
     const subscribe = authApp.onAuthStateChanged((user) => {
@@ -44,7 +44,7 @@ export const AuthProvider = ({ children }) => {
         register,
         login,
         logout,
-        bidAuction
+       /*  bidAuction */
       }}
     >
       {children}

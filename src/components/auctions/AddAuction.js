@@ -30,7 +30,7 @@ export const AddAuction = ({ setAuction }) => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition, showError);
     } else { 
-      console.log("Geolocation is not supported by this browser.")
+      /* console.log("Geolocation is not supported by this browser.") */
     }
 
   
@@ -43,16 +43,16 @@ export const AddAuction = ({ setAuction }) => {
   function showError(error) {
     switch(error.code) {
       case error.PERMISSION_DENIED:
-        console.log("User denied the request for Geolocation.")
+        /* console.log("User denied the request for Geolocation.") */
         break;
       case error.POSITION_UNAVAILABLE:
-        console.log("Location information is unavailable.")
+        /* console.log("Location information is unavailable.") */
         break;
       case error.TIMEOUT:
-        console.log("The request to get user location timed out.")
+        /* console.log("The request to get user location timed out.") */
         break;
       case error.UNKNOWN_ERROR:
-        console.log("An unknown error occurred.")
+        /* console.log("An unknown error occurred.") */
         break;
     }
   }
