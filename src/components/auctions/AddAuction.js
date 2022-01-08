@@ -110,6 +110,8 @@ export const AddAuction = ({ setAuction }) => {
   const submitForm = async (e) => {
     e.preventDefault();
 
+  if (confirm(`Gardar este Viaje como: ${' '} ${asm ? 'COMPLETADO ✓' : 'SIN Completar ✘'}`)) {
+
     if(cliente === 'oxxo' && tienda1 === ''){
       alert('Elija la tienda')
       return
@@ -143,6 +145,7 @@ export const AddAuction = ({ setAuction }) => {
 
     setAuction(newAuction);
     closeForm();
+  }
   };
 
   return (
