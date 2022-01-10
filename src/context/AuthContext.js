@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-import { authApp /* firestoreApp  */} from '../config/firebase';
+import { authApp } from '../config/firebase';
 
 export const AuthContext = createContext();
 
@@ -19,15 +19,6 @@ export const AuthProvider = ({ children }) => {
     return authApp.signOut();
   };
 
- /*  const bidAuction = (auctionId) => {
-
-    const db = firestoreApp.collection('auctions');
-
-    return db.doc(auctionId).update({
-      completed: false
-    });
-  }; */
-
   useEffect(() => {
     const subscribe = authApp.onAuthStateChanged((user) => {
       setCurrentUser(user);
@@ -38,15 +29,7 @@ export const AuthProvider = ({ children }) => {
 
 
   return (
-    <AuthContext.Provider
-      value={{
-        currentUser,
-        register,
-        login,
-        logout,
-       /*  bidAuction */
-      }}
-    >
+    <AuthContext.Provider value={{ currentUser, register, login, logout }}>
       {children}
     </AuthContext.Provider>
   );

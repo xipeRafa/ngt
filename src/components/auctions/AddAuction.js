@@ -3,8 +3,7 @@ import React, { useContext, useRef, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import Resizer from "react-image-file-resizer";
 
-const resizeFile = (file) =>
-  new Promise((resolve) => {
+const resizeFile = (file) => new Promise((resolve) => {
     Resizer.imageFileResizer(
       file,
       210,
@@ -12,31 +11,24 @@ const resizeFile = (file) =>
       "JPEG",
       80,
       0,
-      (uri) => {
-        resolve(uri);
-      },
-      "base64"
+      (uri) => { resolve(uri) }, "base64"
     );
-  });
-
-
-
+  }
+)
 
 export const AddAuction = ({ setAuction }) => {
+  
   const [lati, setLati]=useState('no-gps')
   const [longi, setLongi]=useState('no-gps')
 
-  
-    if (navigator.geolocation) {
+  if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition, showError);
-    } else { 
+  } else { 
       /* console.log("Geolocation is not supported by this browser.") */
-    }
+  }
 
-  
   function showPosition(position) {
     setLati(position.coords.latitude)
-
     setLongi(position.coords.longitude)
   }
   
@@ -75,9 +67,7 @@ export const AddAuction = ({ setAuction }) => {
 
     const image = await resizeFile(file);
 
-    fetch(image)
-    .then(res => res.blob())
-    .then(blob => {
+    fetch(image).then(res => res.blob()).then(blob => {
       const file = new File([blob], Date.now()+'.jpeg',{ type: "image/jpeg" })
       setImg(file)
     })
@@ -107,7 +97,7 @@ export const AddAuction = ({ setAuction }) => {
 
   const[asm, setAsm]=useState(true)
 
-  const submitForm = async (e) => {
+  const submitForm = async (e) => { /* ==================== SUBMIT ====================== */
     e.preventDefault();
 
   if (confirm(`Gardar este Viaje como: ${' '} ${asm ? 'COMPLETADO ✓' : 'SIN Completar ✘'}`)) {

@@ -4,7 +4,6 @@ import { AddAuction } from './AddAuction';
 import { AuctionCard } from './AuctionCard';
 import { ProgressBar } from './ProgressBar';
 
-
 export const AuctionBody = () => {
   const [auction, setAuction] = useState(null);
   const { currentUser } = useContext(AuthContext);
@@ -35,7 +34,6 @@ export const AuctionBody = () => {
 
         <div className="row row-cols-1 row-cols-md-3 row-cols-lg-4 p-5 g-3 border mt-1 ">
           {arrInitial
-            .slice(0,8)
             .sort((o1, o2) => o2.duration - o1.duration)
             .map((doc, i) => {
               return <AuctionCard item={doc} key={i} deleteHandler={deleteHandler} />;
