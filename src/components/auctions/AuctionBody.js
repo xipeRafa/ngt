@@ -5,6 +5,7 @@ import { AuctionCard } from './AuctionCard';
 import { ProgressBar } from './ProgressBar';
 
 export const AuctionBody = () => {
+
   const [auction, setAuction] = useState(null);
   const { currentUser } = useContext(AuthContext);
 
@@ -26,8 +27,10 @@ export const AuctionBody = () => {
     setArr(arrInitial.filter((el) => el.duration !== ID)); 
   };
 
+
   return (
     <>
+       
         {auction && <ProgressBar auction={auction} setAuction={setAuction} />}
        
         {currentUser && <AddAuction setAuction={setAuction} />}
