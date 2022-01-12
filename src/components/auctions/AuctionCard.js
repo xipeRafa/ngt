@@ -14,6 +14,7 @@ export const AuctionCard = ({ item, deleteHandler }) => {
   }); 
 
   return (
+    (currentUser && (
       <div className="col mb-4"> 
         <div className="card shadow-sm">
 
@@ -57,6 +58,7 @@ export const AuctionCard = ({ item, deleteHandler }) => {
 
         </div>
       </div>
+    ))
   );
 };
 

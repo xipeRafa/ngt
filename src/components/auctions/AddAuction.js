@@ -100,7 +100,14 @@ export const AddAuction = ({ setAuction }) => {
   const submitForm = async (e) => { /* ==================== SUBMIT ====================== */
     e.preventDefault();
 
-  if (confirm(`Gardar este Viaje como: ${' '} ${asm ? 'COMPLETADO ✓' : 'SIN Completar ✘'}`)) {
+  if (confirm(`Gardar este Viaje como: ${' '} ${asm ? 'COMPLETADO ✓' : 'SIN Completar ✘'}
+
+  Nota:
+    si no Ves las Fotos No hay Problema.
+    puedes borrar todo de tu Cuenta,
+    nada se borra de la Base de Datos.
+    Todo esta en Nuesta Base de Datos.
+  `  )) {
 
     if(cliente === 'oxxo' && tienda1 === ''){
       alert('Elija la tienda')

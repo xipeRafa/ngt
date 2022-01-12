@@ -10,7 +10,7 @@ export const NavComp = () => {
   return (
     <nav className="container navbar navbar-light ">
       <div className="container d-flex flex-column">
-        <div className="navbar-brand mb-4">
+        <div className="mb-4">
           <img src={logoImg} alt="logo" height="50" />
         </div>
         <div className="d-flex">
